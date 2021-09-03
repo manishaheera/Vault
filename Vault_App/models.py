@@ -12,8 +12,8 @@ class UserManager(models.Manager):
         if not USERNAME_REGEX.match(postData['username']):
             errors['username'] = "Invalid Username Format"
 
-        if len(postData['first_name']) < 5:
-            errors['username'] = "Username Must Be Atleast 5 Characters"
+        if len(postData['first_name']) < 4:
+            errors['username'] = "Username Must Be Atleast 4 Characters"
 
         if not EMAIL_REGEX.match(postData['email']):          
             errors['email'] = "EMPTY/INVALID EMAIL ADDRESS FORMAT"
