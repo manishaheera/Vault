@@ -1,24 +1,19 @@
 from django.db import models
+import bcrypt
 import re 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
-NAME_REGEX = re.compile(r'^[a-zA-Z ]')
+USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]')
 
 class UserManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
 
-        if not NAME_REGEX.match(postData['first_name']):
-            errors['first_name'] = "INVALID FIRST NAME FORMAT"
+        if not USERNAME_REGEX.match(postData['username']):
+            errors['username'] = "Invalid Username Format"
 
-        if len(postData['first_name']) < 2:
-            errors['first_name'] = "FIRST NAME MUST BE ATLEAST 2 CHARACTERS"
-
-        if not NAME_REGEX.match(postData['last_name']):           
-            errors['last_name'] = "INVALID LAST NAME FORMAT"
-        
-        if len(postData['last_name']) < 2:
-            errors['last_name'] = "LAST NAME MUST BE ATLEAST 2 CHARACTERS"
+        if len(postData['first_name']) < 5:
+            errors['username'] = "Username Must Be Atleast 5 Characters"
 
         if not EMAIL_REGEX.match(postData['email']):          
             errors['email'] = "EMPTY/INVALID EMAIL ADDRESS FORMAT"
@@ -37,8 +32,7 @@ class UserManager(models.Manager):
 
 
 class User(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
