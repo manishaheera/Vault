@@ -6,11 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'registration_login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">
     <title>Vault</title>
 </head>
 <body>
 
     <div id="wrapper">
+
+    <h1>Vault</h1>
 
         {% if messages %} 
                 {% for message in messages %}    
@@ -18,30 +23,35 @@
                 {% endfor %}
             {% endif %}
 
-        <div class ="register-login">
-            <h1>Register</h1>
-            <form action="user/create_user" method="post">
-                {% csrf_token %} 
-                <h2>Username</h2>
-                <input type="text" name="username">
-                <h2>Email</h2>
-                <input type="text" name="email">
-                <h2>Password</h2>
-                <input type="text" name="password">
-                <h2>Confirm Password</h2>
-                <input type=text  name="confirm_password">
-                <button>Register</button>
-                </form>
+        <div id ="register-login">
 
-            <h1> Login </h1>
-            <form action="user/login" method="post">
-                {% csrf_token %} 
-                <h2>Email</h2>
-                <input type="text" name="email">
-                <h2>Password</h2>
-                <input type="text" name="password">
-                <button>Log In</button>
-            </form>
+            <div class = "register">
+                <h3>Register</h3>
+                <form action="user/create_user" method="post">
+                    {% csrf_token %} 
+                    <label for="username">Username:</label>
+                    <input type="text" name="username">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email">
+                    <label for="password">Password:</label>
+                    <input type="text" name="password">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type=text  name="confirm_password"> <br>
+                    <button>Register</button>
+                    </form>
+            </div>
+
+            <div class = "login">
+                <h3> Login </h3>
+                <form action="user/login" method="post">
+                    {% csrf_token %} 
+                    <label for="Email">Email:</label>
+                    <input type="text" name="email">
+                    <label for="password">Password:</label>
+                    <input type="text" name="password"> <br>
+                    <button>Log In</button>
+                </form>
+            </div>
         </div>
 
     </div>

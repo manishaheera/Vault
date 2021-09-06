@@ -1,6 +1,7 @@
 *{
     margin:0px;
     padding:0px;
+    font-family: Helvetica;
 }
 
 #wrapper{
@@ -8,7 +9,10 @@
     width:80%;
 }
 
-.register_login{
-    display:flex;
-    flex-direction: column;
+label{
+    display:block;
+}
+
+#register_login{
+    display:inline-block;
 }
