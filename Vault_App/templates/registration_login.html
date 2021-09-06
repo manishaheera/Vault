@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'registration_login.css' %}">
+    <title>Vault</title>
+</head>
+<body>
+
+    <div id="wrapper">
+
+        {% if messages %} 
+                {% for message in messages %}    
+                    <br>{{ message }} <br>
+                {% endfor %}
+            {% endif %}
+
+        <div class ="register-login">
+            <h1>Register</h1>
+            <form action="user/create_user" method="post">
+                {% csrf_token %} 
+                <h2>Username</h2>
+                <input type="text" name="username">
+                <h2>Email</h2>
+                <input type="text" name="email">
+                <h2>Password</h2>
+                <input type="text" name="password">
+                <h2>Confirm Password</h2>
+                <input type=text  name="confirm_password">
+                <button>Register</button>
+                </form>
+
+            <h1> Login </h1>
+            <form action="user/login" method="post">
+                {% csrf_token %} 
+                <h2>Email</h2>
+                <input type="text" name="email">
+                <h2>Password</h2>
+                <input type="text" name="password">
+                <button>Log In</button>
+            </form>
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -11,19 +11,23 @@ class UserManager(models.Manager):
 
         if not USERNAME_REGEX.match(postData['username']):
             errors['username'] = "Invalid Username Format"
+        users_username = User.objects.filter(username=postData['username'])
+        
+        if len(users_username) >= 1:
+            errors['username_taken'] = "Username is Taken"
 
         if not EMAIL_REGEX.match(postData['email']):          
-            errors['email'] = "EMPTY/INVALID EMAIL ADDRESS FORMAT"
+            errors['email'] = "Empty/Invalid Email Format"
         users_email = User.objects.filter(email=postData['email'])
 
         if len(users_email) >= 1:
-            errors['email_taken'] = 'ACCOUNT WITH EMAIL ALREADY EXISTS'
+            errors['email_taken'] = 'Email Already In Use'
 
         if len(postData['password']) < 8:
-            errors['password'] = "PASSWORD MUST BE ATLEAST 8 CHARACTERS"
+            errors['password'] = "Password Must Be At Least 8 Characters"
         
         if postData['password'] != postData['confirm_password']:
-            errors['match_pw'] = "PASSWORD ENTRIES DO NOT MATCH"
+            errors['match_pw'] = "Password Entries Do Not Match"
         
         return errors
 

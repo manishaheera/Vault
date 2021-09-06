@@ -5,9 +5,9 @@ from django.contrib import messages
 import bcrypt
 
 def index(request):
-    return render(request,'login.html')
+    return render(request,'registration_login.html')
 
-def register(request):
+def create_user(request):
     if request.method == 'POST':
         errors = User.objects.basic_validator(request.POST)
         if len(errors) > 0:
@@ -16,33 +16,32 @@ def register(request):
             return redirect('/')
         else:
             password_hash = bcrypt.hashpw(request.POST['password'].encode(),bcrypt.gensalt()).decode()
-            print(password_hash)
             user = User.objects.create(
-            username = request.POST['username'],
-            email = request.POST['email'],
-            password = password_hash,
+                username = request.POST['username'],
+                email = request.POST['email'],
+                password = password_hash,
             )
             request.session['user_signed_in'] = user.id
-            return redirect('/dashboard')
+            return redirect('/user/dashboard')
 
-def dashboard(request):
+def user_dashboard(request):
     user = User.objects.get(id=request.session['user_signed_in'])
     context = {
         'user': User.objects.get(id=request.session['user_signed_in']),
     }
     return render(request,'dashboard.html', context)
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         user = User.objects.filter(email = request.POST['email'])
         if user:
             this_user = user[0]
             if bcrypt.checkpw(request.POST['password'].encode(), this_user.password.encode()):
                 request.session['user_signed_in'] = this_user.id
-                return redirect('/dashboard')    
-        messages.error(request,"ACCOUNT NOT FOUND, PLEASE VERIFY EMAIL/PASSWORD FIELDS ARE CORRECT")
+                return redirect('/user/dashboard')    
+        messages.error(request,"Vault Account Not Found, Please Try Again or Create An Account")
         return redirect('/')
 
-def logout(request):
+def user_logout(request):
     request.session.flush()
     return redirect('/')

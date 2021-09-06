@@ -1,0 +1,14 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+#wrapper{
+    margin:0 auto;
+    width:80%;
+}
+
+.register_login{
+    display:flex;
+    flex-direction: column;
+}
