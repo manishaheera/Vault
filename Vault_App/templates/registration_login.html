@@ -15,7 +15,6 @@
 
     <div id="wrapper">
 
-    <h1>Vault</h1>
 
         {% if messages %} 
                 {% for message in messages %}    
@@ -23,38 +22,55 @@
                 {% endfor %}
             {% endif %}
 
-        <div id ="register-login">
-
-            <div class = "register">
-                <h3>Register</h3>
-                <form action="user/create_user" method="post">
-                    {% csrf_token %} 
-                    <label for="username">Username:</label>
-                    <input type="text" name="username">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email">
-                    <label for="password">Password:</label>
-                    <input type="text" name="password">
-                    <label for="confirm_password">Confirm Password:</label>
-                    <input type=text  name="confirm_password"> <br>
-                    <button>Register</button>
-                    </form>
+        <div id ="register-login-box">
+            <h1>Vault</h1>
+            <div class = "button-box">
+                <div id="button"></div>
+                <button class ="toggle-button" onclick="login()">Log In</button>
+                <button class ="toggle-button" onclick="register()">Register</button>
+            </div>
+            <div class="social-icons">
+                <img class ="social-imgs" src="{% static 'pictures/facebook.png' %}"/> 
+                <img class ="social-imgs" src="{% static 'pictures/twitter.png' %}"/>
+                <img class ="social-imgs" src="{% static 'pictures/instagram.png' %}"/>
             </div>
 
-            <div class = "login">
-                <h3> Login </h3>
-                <form action="user/login" method="post">
-                    {% csrf_token %} 
-                    <label for="Email">Email:</label>
-                    <input type="text" name="email">
-                    <label for="password">Password:</label>
-                    <input type="text" name="password"> <br>
-                    <button>Log In</button>
+            <form action="user/login" method="post" id="log-in" class="input-group">
+                {% csrf_token %} 
+                <input type="text" class="input-field" name="email" placeholder="User Email" required>
+                <input type="text" class="input-field" name="password" placeholder="Enter Password" required> 
+                <input type="checkbox" class="check-box"> <span> Remember Password </span>
+                <button class="submit-button">Log In</button>
+            </form>
+
+            <form action="user/create_user" method="post" id="register" class="input-group">
+                {% csrf_token %} 
+                <input type="text" class="input-field" name="username" placeholder="Create Username" required>
+                <input type="text" class="input-field" name="email" placeholder="Enter Email" required>
+                <input type="text" class="input-field" name="password" placeholder="Enter Password" required>
+                <input type="text" class="input-field" name="confirm_password" placeholder="Confirm Password" required> 
+                <input type="checkbox" class="check-box" required> <span> I agree to Vault's terms & conditions and privacy policy </span>
+                <button class="submit-button">Register</button>
                 </form>
-            </div>
         </div>
-
     </div>
     
+    <script> 
+    var x = document.getElementById("log-in");
+    var y = document.getElementById("register");
+    var z = document.getElementById("button");
+
+    function register(){
+        x.style.left="-400px";
+        y.style.left="50px";
+        z.style.left="110px";
+    }
+
+    function login(){
+        x.style.left="50px";
+        y.style.left="450px";
+        z.style.left="0px";
+    }
+    </script>
 </body>
 </html>
