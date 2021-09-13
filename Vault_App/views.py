@@ -39,7 +39,7 @@ def user_login(request):
             if bcrypt.checkpw(request.POST['password'].encode(), this_user.password.encode()):
                 request.session['user_signed_in'] = this_user.id
                 return redirect('/user/dashboard')    
-        messages.error(request,"Vault Account Not Found, Please Try Again or Create An Account")
+        messages.error(request,"Vault account not found. Please try again.")
         return redirect('/')
 
 def user_logout(request):

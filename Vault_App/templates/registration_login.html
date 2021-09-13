@@ -6,29 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'registration_login.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">
-    <title>Vault</title>
+    <title>VAULT</title>
 </head>
 <body>
 
     <div id="wrapper">
 
-
-        {% if messages %} 
-                {% for message in messages %}    
-                    <br>{{ message }} <br>
+        {% if messages %}   
+                <div class="error-messages">
+                    ERROR(S) FOUND <br>
+                {% for message in messages %}
+                    {{ message }}<br>
+                </div>
                 {% endfor %}
             {% endif %}
 
         <div id ="register-login-box">
-            <h1>Vault</h1>
+
+            <h1>VAULT</h1>
+
             <div class = "button-box">
                 <div id="button"></div>
                 <button class ="toggle-button" onclick="login()">Log In</button>
                 <button class ="toggle-button" onclick="register()">Register</button>
             </div>
+
             <div class="social-icons">
                 <img class ="social-imgs" src="{% static 'pictures/facebook.png' %}"/> 
                 <img class ="social-imgs" src="{% static 'pictures/twitter.png' %}"/>
@@ -49,28 +51,30 @@
                 <input type="text" class="input-field" name="email" placeholder="Enter Email" required>
                 <input type="text" class="input-field" name="password" placeholder="Enter Password" required>
                 <input type="text" class="input-field" name="confirm_password" placeholder="Confirm Password" required> 
-                <input type="checkbox" class="check-box" required> <span> I agree to Vault's terms & conditions and privacy policy </span>
+                <input type="checkbox" class="check-box" required> <span> I agree to Vault's <a href="">terms & conditions</a> and <a href="">privacy policy</a></span>
                 <button class="submit-button">Register</button>
-                </form>
+            </form>
+
         </div>
     </div>
     
     <script> 
-    var x = document.getElementById("log-in");
-    var y = document.getElementById("register");
-    var z = document.getElementById("button");
+        var x = document.getElementById("log-in");
+        var y = document.getElementById("register");
+        var z = document.getElementById("button");
 
-    function register(){
-        x.style.left="-400px";
-        y.style.left="50px";
-        z.style.left="110px";
-    }
+        function register(){
+            x.style.left="-400px";
+            y.style.left="50px";
+            z.style.left="110px";
+        }
 
-    function login(){
-        x.style.left="50px";
-        y.style.left="450px";
-        z.style.left="0px";
-    }
+        function login(){
+            x.style.left="50px";
+            y.style.left="450px";
+            z.style.left="0px";
+        }
     </script>
+
 </body>
 </html>

@@ -1,29 +1,54 @@
 *{
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
     font-family: Helvetica;
 }
 
-#wrapper{
-    margin:0 auto;
-    width:80%;
+html{
+    background: url(pictures/texture.jpg) no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
+#wrapper{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.error-messages{
+    padding:10px;
+    font-size: 10px;
+    color:#ff0000;
+}
 
 #register-login-box{
+    border: 5px #d9d7c7;
+    background-color: rgb(255, 255, 255);
     width: 380px;
-    height:480px;
-    position:relative;
+    height: 480px;
+    position: relative;
     margin: 6% auto;
-    background: #fff;
-    padding: 5px;
-    overflow:hidden;
+    padding: 10px;
+    overflow: hidden;
+}
+
+h1{
+    margin-top:10px;
+    opacity:.8;
+    font-weight: 100;
+    letter-spacing: 10px;
+    font-size: 30px;
+    color: #483e3f;
+    text-align: center;
 }
 
 .button-box{
-    width:220px;
-    margin: 35px auto;
-    position:relative;
+    width: 220px;
+    margin: 30px auto;
+    position: relative;
     box-shadow: 0 0 20px 9px #ffffff1f;
     border-radius: 30px;
 }
@@ -53,34 +78,39 @@
 }
 
 .social-imgs{
-    width:30px;
+    width: 30px;
     margin: 0 12px;
     border-radius: 50%;
 }
 
+.social-imgs:hover{
+    opacity: .3;
+    filter: invert(20%);
+}
+
 #login{
-    left:50px;
+    left: 50px;
 }
 
 #register{
-    left:450px;
+    left: 450px;
 }
 
 .input-group{
-    top:180px;
-    position:absolute;
+    top: 180px;
+    position: absolute;
     width: 280px;
     transition: .5s;
 }
 
 .input-field{
-    width:100%;
+    width: 100%;
     padding: 10px 0;
     margin: 5px 0;
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: 1px solid #d9d1c7;
+    border-bottom: 1px solid #483e3f;
     outline: none;
     background: transparent;
 }
@@ -95,17 +125,21 @@ span{
     position: absolute;
 }
 
+a{
+    color: #483e3f;
+}
+
 .submit-button{
     margin: auto;
     width: 85%;
     padding: 10px 30px;
-    display:block;
-    outline:none;
+    display: block;
+    outline: none;
     border: 0;
     border-radius: 30px;
     background-color: #d9d1c7;
 }
 
 .submit-button:hover{
-    color:white;
+    color: white;
 }
