@@ -3,6 +3,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import User
 from django.contrib import messages
 import bcrypt
+import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 
 def index(request):
     return render(request,'registration_login.html')
@@ -33,6 +36,9 @@ def user_dashboard(request):
 
 def user_login(request):
     if request.method == 'POST':
+        if not EMAIL_REGEX.match(request.POST['email']):          
+            messages.error(request, "Please enter a valid email address.")
+            return redirect('/')
         user = User.objects.filter(email = request.POST['email'])
         if user:
             this_user = user[0]

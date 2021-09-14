@@ -13,10 +13,9 @@
     <div id="wrapper">
 
         {% if messages %}   
+            {% for message in messages %}
                 <div class="error-messages">
-                    ERROR(S) FOUND <br>
-                {% for message in messages %}
-                    {{ message }}<br>
+                    {{ message }}
                 </div>
                 {% endfor %}
             {% endif %}
@@ -24,7 +23,7 @@
         <div id ="register-login-box">
 
             <h1>VAULT</h1>
-
+            
             <div class = "button-box">
                 <div id="button"></div>
                 <button class ="toggle-button" onclick="login()">Log In</button>
@@ -40,7 +39,7 @@
             <form action="user/login" method="post" id="log-in" class="input-group">
                 {% csrf_token %} 
                 <input type="text" class="input-field" name="email" placeholder="User Email" required>
-                <input type="text" class="input-field" name="password" placeholder="Enter Password" required> 
+                <input type="text" class="input-field" name="password" placeholder="Enter Password" id="password-input" required> 
                 <input type="checkbox" class="check-box"> <span> Remember Password </span>
                 <button class="submit-button">Log In</button>
             </form>
@@ -51,7 +50,7 @@
                 <input type="text" class="input-field" name="email" placeholder="Enter Email" required>
                 <input type="text" class="input-field" name="password" placeholder="Enter Password" required>
                 <input type="text" class="input-field" name="confirm_password" placeholder="Confirm Password" required> 
-                <input type="checkbox" class="check-box" required> <span> I agree to Vault's <a href="">terms & conditions</a> and <a href="">privacy policy</a></span>
+                <input type="checkbox" class="check-box" required> <span> I agree to Vault's <a href="/">terms & conditions</a> and <a href="/">privacy policy</a></span>
                 <button class="submit-button">Register</button>
             </form>
 
