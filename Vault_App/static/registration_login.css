@@ -115,6 +115,10 @@ h1{
     background: transparent;
 }
 
+.input-field::placeholder:hover{
+    content:none;
+}
+
 .check-box{
     margin: 30px 10px 30px 0;
 }
